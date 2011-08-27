@@ -87,6 +87,8 @@ public class Ushahidi extends MIDlet  {
          }
 
          showSplashScreen();
+         
+         api.getIncidentsBySinceId(100);
     }
 
     public void pauseApp() {
@@ -178,6 +180,8 @@ public class Ushahidi extends MIDlet  {
     //<editor-fold defaultstate="collapsed" desc="View incidents ">
     public void displayViewForm() {        
         Container container = new Container(new BoxLayout(BoxLayout.Y_AXIS));        
+        
+        System.out.println(getCategoryTitles().length);
         
         // Update categories List
         if (getCategoryTitles() != null && (getCurrentCategoryIndex() == -1)) {    

@@ -910,6 +910,8 @@ public class API implements Runnable {
      public void getIncidentsBySinceId(int sinceId) {
         String ushahidiInstance = API.getDeployment();
         String url = (ushahidiInstance.endsWith("/"))? ushahidiInstance.concat("api?task=incidents&by=sinceid&id="+sinceId+"&resp=xml") : ushahidiInstance.concat("/api?task=incidents&by=sinceid&id="+sinceId+"&resp=xml");
+        System.out.println(url);
+        
         String id = null, title = null, description = null, date = null, mode = null, active = null, verified = null;
         Vector incidentsVector = new Vector();
 
@@ -920,11 +922,6 @@ public class API implements Runnable {
             parser.setInput(reader);
             parser.nextTag();
             parser.require(XmlPullParser.START_TAG, null, "response");
-            parser.nextTag();
-            parser.require(XmlPullParser.START_TAG, null, "payload");
-            parser.nextTag();
-            parser.require(XmlPullParser.START_TAG, null, "incidents");
-            parser.nextTag();
 
             while (parser.next() != XmlPullParser.END_DOCUMENT) {
                 if(parser.getEventType() == XmlPullParser.START_TAG) {
@@ -962,6 +959,8 @@ public class API implements Runnable {
 
                     if (parser.getName().equals("mediaItems")) {
                         incidentsVector.addElement(new String[] {id, title, description, date, mode, active, verified});
+                        String output = "ID: "+id+" Title: "+title+" Desc: "+description+" Date: "+date;
+                        System.out.println(output);
                     }
 
                 }
