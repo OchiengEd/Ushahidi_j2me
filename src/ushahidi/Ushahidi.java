@@ -29,7 +29,7 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.microedition.media.*;
-import javax.microedition.media.control.*;
+//import javax.microedition.media.control.*;
 
 import ushahidi.core.I18N;
 
@@ -56,7 +56,7 @@ public class Ushahidi extends MIDlet  {
     private DefaultListModel incidentListModel = null;
     private Form cameraForm;
     private Player player;
-    private VideoControl vidControl;
+//    private VideoControl vidControl;
     private MediaComponent mediaComponent;
            
     /**
@@ -658,44 +658,44 @@ public class Ushahidi extends MIDlet  {
     private void showCamera() {
         cameraForm = new Form("Capture Image");
         
-        try {
-            player = Manager.createPlayer("capture://video");
-            player.prefetch();
-            player.realize();
-            mediaComponent = new MediaComponent(player);
-           
-            vidControl = (VideoControl) mediaComponent.getVideoControl();
-            vidControl.setVisible(false);
-           
-            mediaComponent.setFullScreen(true);
-            mediaComponent.start();            
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-        cameraForm.addCommand(new Command("Back") {
-             public void actionPerformed(ActionEvent ev) {
-                    mediaComponent.stop();
-                    
-                }
-        });
-         cameraForm.addCommand(new Command("Capture") {
-            public void actionPerformed(ActionEvent ev) {
-                captureImage();
-            }
-        });
-       
-        cameraForm.addComponent(mediaComponent);
-        cameraForm.show();
+//        try {
+//            player = Manager.createPlayer("capture://video");
+//            player.prefetch();
+//            player.realize();
+//            mediaComponent = new MediaComponent(player);
+//           
+//            vidControl = (VideoControl) mediaComponent.getVideoControl();
+//            vidControl.setVisible(false);
+//           
+//            mediaComponent.setFullScreen(true);
+//            mediaComponent.start();            
+//        } catch (Exception e) {
+//            System.err.println(e.getMessage());
+//        }
+//        cameraForm.addCommand(new Command("Back") {
+//             public void actionPerformed(ActionEvent ev) {
+//                    mediaComponent.stop();
+//                    
+//                }
+//        });
+//         cameraForm.addCommand(new Command("Capture") {
+//            public void actionPerformed(ActionEvent ev) {
+//                captureImage();
+//            }
+//        });
+//       
+//        cameraForm.addComponent(mediaComponent);
+//        cameraForm.show();
         
     }
 
 private void captureImage() {
     try {
         
-        byte[] raw = vidControl.getSnapshot(null);
-        Image image = Image.createImage(raw, 0, raw.length);
-        mediaComponent.stop();
-        cameraForm.setBgImage(image);
+//        byte[] raw = vidControl.getSnapshot(null);
+//        Image image = Image.createImage(raw, 0, raw.length);
+//        mediaComponent.stop();
+//        cameraForm.setBgImage(image);
 
        
         // Create TwitPic object and allocate TwitPicResponse object
