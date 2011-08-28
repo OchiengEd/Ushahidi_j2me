@@ -21,6 +21,7 @@ import javax.microedition.lcdui.AlertType;
 import ushahidi.core.API;
 import ushahidi.core.Settings;
 import com.sun.lwuit.util.Resources;
+import com.ushahidi.j2me.forms.Dashboard;
 import javax.microedition.midlet.*;
 import ushahidi.core.Maps;
 import java.io.IOException;
@@ -37,8 +38,6 @@ import ushahidi.core.I18N;
 /**
  * @author toshiba
  */
-
-
 public class Ushahidi extends MIDlet  {
     private Form mainForm,reportForm,viewForm,settingsForm,detailsForm, splashForm,instance;    
     private Button reportButton,viewButton,settingsButton,takephoto,takegallery;
@@ -77,11 +76,11 @@ public class Ushahidi extends MIDlet  {
 
     public void startApp() {
          Display.init(this);
-
-         try {
+        try {
             Resources res = Resources.open("/res/Ushahidi.res");
             UIManager.getInstance().setThemeProps(res.getTheme("Ushahidi"));
-         } catch(IOException ex) {
+         }
+         catch(IOException ex) {
              Alert uiManAlert = new Alert("UIManager error", ex.getMessage(), null, AlertType.ERROR);
              uiManAlert.setTimeout(50);
          }
@@ -89,6 +88,9 @@ public class Ushahidi extends MIDlet  {
          showSplashScreen();
          
          api.getIncidentsBySinceId(100);
+
+         //showSplashScreen();
+         new Dashboard(null).show();
     }
 
     public void pauseApp() {
